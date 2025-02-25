@@ -10,3 +10,4 @@
 - [btrfs](https://btrfs.readthedocs.io/en/latest/)
 - [timeshift](https://github.com/linuxmint/timeshift)
 - [i3wm](https://i3wm.org/)
+- [fzf](https://github.com/junegunn/fzf)
