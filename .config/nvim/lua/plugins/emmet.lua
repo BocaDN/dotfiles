@@ -1,5 +1,5 @@
 return {
   'mattn/emmet-vim',
-  ft = { 'html', 'css', 'javascript', 'typescript', 'vue', 'jsx', 'tsx' },
+  ft = { 'htmldjango','html', 'css', 'javascript', 'typescript', 'vue', 'jsx', 'tsx' },
 }
 
