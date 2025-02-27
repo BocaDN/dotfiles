@@ -1,12 +1,13 @@
 -- Set leader key to space
 vim.g.mapleader = " "
+vim.g.user_emmet_leader_key = '<C-z>'
 
 local keymap = vim.keymap
 keymap.set("n", "<leader>bp", vim.cmd.bp)
 keymap.set("n", "<leader>bn", vim.cmd.bn)
 
 -- Set up Emmet expansion with the leader key
-keymap.set("i", "<leader>me", "<C-y>expand_emmet()", { noremap = true, silent = true })
+-- keymap.set("i", "<leader>me", "<C-y>expand_emmet()", { noremap = true, silent = true })
 
 -- General keymaps
 keymap.set("n", "<leader>wq", ":wq<CR>") -- save and quit

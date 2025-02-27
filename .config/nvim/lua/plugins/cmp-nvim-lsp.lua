@@ -30,6 +30,13 @@ return {
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup({})
 
+    cmp.setup.filetype('htmldjango', {
+      sources = cmp.config.sources({
+        {name = 'nvim_lsp'},
+        {name = 'buffer'}
+      })
+    })
+
     cmp.setup.filetype('html', {
       sources = cmp.config.sources({
         {name = 'nvim_lsp'},
