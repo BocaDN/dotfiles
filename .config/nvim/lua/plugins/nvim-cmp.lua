@@ -75,7 +75,7 @@ return {
           select = true,
         },
         -- Tab through suggestions or when a snippet is active, tab to the next argument
-        ['<Tab>'] = cmp.mapping(function(fallback)
+        ['<C-n>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
           elseif luasnip.expand_or_locally_jumpable() then
@@ -85,7 +85,7 @@ return {
           end
         end, { 'i', 's' }),
         -- Tab backwards through suggestions or when a snippet is active, tab to the next argument
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
+        ['<C-p'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
           elseif luasnip.locally_jumpable(-1) then

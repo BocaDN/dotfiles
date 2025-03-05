@@ -12,7 +12,7 @@ set $sm HDMI-1-0
 exec_always --no-startup-id "xrandr --output HDMI-1-0 --auto --above eDP-1"
 
 assign [class="konsole"] 1
-assign [class="Chromium"] 2
+#assign [class="Chromium"] 2
 assign [class="obsidian"] 3
 assign [class="com.github.johnfactotum.Foliate"] 3
 assign [class="discord"] 4
@@ -66,8 +66,10 @@ exec --no-startup-id i3-msg "exec pcmanfm,exec pcmanfm"
 exec --no-startup-id i3-msg "exec pavucontrol"
 
 # Define a keybinding to take a screenshot
-bindsym $mod+Print "exec scrot -s -f '%Y-%m-%d-%H-%M-%S.png' -e 'mv $f ~/Pictures/'"
-bindsym Print "exec scrot '%Y-%m-%d-%H-%M-%S.png' -e 'mv $f ~/Pictures/'"
+# bindsym $mod+Print "exec scrot -s -f '%Y-%m-%d-%H-%M-%S.png' -e 'mv $f ~/Pictures/'"
+# bindsym Print "exec scrot '%Y-%m-%d-%H-%M-%S.png' -e 'mv $f ~/Pictures/'"
+bindsym $mod+Control+p "exec flameshot gui"
+bindsym $mod+Control+Shift+p "exec flameshot full -p ~/Pictures"
 
 # Use brightnessctl to adjust screen brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
