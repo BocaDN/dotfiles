@@ -91,6 +91,10 @@ return {
       },
     }
 
+    -- Set up TypeScript LSP server
+    lspconfig.ts_ls.setup({
+
+    })
     lspconfig.angularls.setup {}
 
     -- Globally configure all LSP floating preview popups (like hover, signature help, etc)

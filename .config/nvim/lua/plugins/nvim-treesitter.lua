@@ -17,6 +17,18 @@ return {
     ensure_installed = {
       'lua',
       'comment',
+      'typescript',
+      'tsx',
+      'javascript',
+      'json',
+      'html',
+    },
+    context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+    },
+    autotag = {
+      enable = true,
     },
   },
   config = function (_, opts)

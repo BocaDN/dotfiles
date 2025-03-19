@@ -44,6 +44,14 @@ return {
       })
     })
 
+    cmp.setup.filetype('ts', {
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'buffer' }
+
+      })
+    })
+
     cmp.setup({
       snippet = {
         expand = function(args)

@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+vim.treesitter.language.register("html", "angular") -- Ensures HTML is injected in Angular templates
 -- Session Management
 opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
