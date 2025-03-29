@@ -4,6 +4,8 @@ vim.treesitter.language.register("html", "angular") -- Ensures HTML is injected 
 -- Session Management
 opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+opt.termguicolors = true
+
 -- Line Numbers
 opt.relativenumber = true
 opt.number = true
