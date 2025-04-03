@@ -6,6 +6,7 @@ opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,term
 
 opt.termguicolors = true
 
+
 -- Line Numbers
 opt.relativenumber = true
 opt.number = true

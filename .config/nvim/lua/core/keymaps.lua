@@ -136,6 +136,9 @@ keymap.set("n", '<leader>tm', function()
   end
 end)
 
+-- Database
+keymap.set("n", '<leader>db', "<cmd>DBUIToggle<cr>")
+
 -- Debugging
 keymap.set("n", "<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>")
 keymap.set("n", "<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
