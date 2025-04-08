@@ -59,10 +59,10 @@ exec --no-startup-id nm-applet
 exec --no-startup-id "xmodmap ~/.Xmodmap"
 exec --no-startup-id i3-msg "exec konsole -e tmux"
 exec --no-startup-id i3-msg "exec chromium"
-exec --no-startup-id i3-msg "exec obsidian"
-exec --no-startup-id i3-msg "exec foliate"
-exec --no-startup-id i3-msg "exec discord"
-exec --no-startup-id i3-msg "exec pcmanfm,exec pcmanfm"
+# exec --no-startup-id i3-msg "exec obsidian"
+# exec --no-startup-id i3-msg "exec foliate"
+# exec --no-startup-id i3-msg "exec discord"
+# exec --no-startup-id i3-msg "exec pcmanfm,exec pcmanfm"
 exec --no-startup-id i3-msg "exec pavucontrol"
 
 # Define a keybinding to take a screenshot
@@ -229,6 +229,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# reload custom dvorak keyboard layout
+bindsym $mod+Shift+d exec ~/.local/bin/rp-dvorak.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
