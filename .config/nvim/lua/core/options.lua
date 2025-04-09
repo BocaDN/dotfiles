@@ -9,6 +9,9 @@ opt.termguicolors = true
 -- Conceal level
 opt.conceallevel = 2
 
+-- Undo tree persistence
+opt.undofile = true
+
 -- Line Numbers
 opt.relativenumber = true
 opt.number = true

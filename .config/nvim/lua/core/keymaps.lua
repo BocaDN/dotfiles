@@ -42,6 +42,9 @@ keymap.set("n", "<leader>ck", ":diffget 3<CR>") -- get diff from right (remote) 
 keymap.set("n", "<leader>cn", "]c")             -- next diff hunk
 keymap.set("n", "<leader>cp", "[c")             -- previous diff hunk
 
+-- UndoTree
+keymap.set("n", "<leader>u", ":UndotreeToggle<CR>") -- toggle undo tree
+
 -- Quickfix keymaps
 keymap.set("n", "<leader>qo", ":copen<CR>")  -- open quickfix list
 keymap.set("n", "<leader>qf", ":cfirst<CR>") -- jump to first quickfix list item
@@ -52,6 +55,9 @@ keymap.set("n", "<leader>qc", ":cclose<CR>") -- close quickfix list
 
 -- Vim-maximizer
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle maximize tab
+
+-- Alpha dashboard
+keymap.set("n", "<leader>h", ":Alpha<CR>") -- toggle maximize tab
 
 -- Nvim-tree
 keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>")   -- toggle file explorer
@@ -77,18 +83,24 @@ end)
 -- Git-blame
 keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>") -- toggle git blame
 
--- Harpoon
-keymap.set("n", "<leader>a", require("harpoon.mark").add_file)
-keymap.set("n", "<C-e>", require("harpoon.ui").toggle_quick_menu)
-keymap.set("n", "<C-h>", function() require("harpoon.ui").nav_file(1) end)
-keymap.set("n", "<C-t>", function() require("harpoon.ui").nav_file(2) end)
-keymap.set("n", "<C-n>", function() require("harpoon.ui").nav_file(3) end)
-keymap.set("n", "<C-s>", function() require("harpoon.ui").nav_file(4) end)
-keymap.set("n", "<leader>h5", function() require("harpoon.ui").nav_file(5) end)
-keymap.set("n", "<leader>h6", function() require("harpoon.ui").nav_file(6) end)
-keymap.set("n", "<leader>h7", function() require("harpoon.ui").nav_file(7) end)
-keymap.set("n", "<leader>h8", function() require("harpoon.ui").nav_file(8) end)
-keymap.set("n", "<leader>h9", function() require("harpoon.ui").nav_file(9) end)
+local harpoon = require("harpoon")
+
+-- REQUIRED
+harpoon:setup()
+-- REQUIRED
+
+keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
+keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
+keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
+keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+
+keymap.set("n", "<C-P>", function() harpoon:list():prev() end)
+keymap.set("n", "<C-N>", function() harpoon:list():next() end)
 
 -- Vim REST Console
 keymap.set("n", "<leader>xr", ":call VrcQuery()<CR>") -- Run REST query
