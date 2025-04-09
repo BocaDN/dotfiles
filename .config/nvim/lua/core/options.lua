@@ -6,6 +6,8 @@ opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,term
 
 opt.termguicolors = true
 
+-- Conceal level
+opt.conceallevel = 2
 
 -- Line Numbers
 opt.relativenumber = true
