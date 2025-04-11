@@ -5,6 +5,9 @@ vim.g.user_emmet_leader_key = '<C-z>'
 
 local keymap = vim.keymap
 
+
+vim.keymap.set("n", "<leader>ts", ":Huez<CR>")
+
 -- Buffer next/previous
 keymap.set("n", "<leader>bp", vim.cmd.bp)
 keymap.set("n", "<leader>bn", vim.cmd.bn)

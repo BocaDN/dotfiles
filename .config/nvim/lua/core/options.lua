@@ -1,10 +1,11 @@
 local opt = vim.opt
 
+opt.termguicolors = true 
+
 vim.treesitter.language.register("html", "angular") -- Ensures HTML is injected in Angular templates
 -- Session Management
 opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-opt.termguicolors = true
 
 -- Conceal level
 opt.conceallevel = 2
@@ -34,7 +35,6 @@ opt.smartcase = true
 opt.cursorline = true
 
 -- Appearance
-opt.termguicolors = true
 opt.background = "dark"
 opt.signcolumn = "yes"
 opt.showmode = false
