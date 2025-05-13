@@ -6,6 +6,11 @@ vim.treesitter.language.register("html", "angular") -- Ensures HTML is injected 
 -- Session Management
 opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+vim.g.python3_host_prog = "/home/nickArch/micromamba/envs/ml-gpu/bin/python"
+
+
+-- Disable Copilot
+vim.g.copilot_enabled = 0
 
 -- Conceal level
 opt.conceallevel = 2

@@ -56,6 +56,21 @@ keymap.set("n", "<leader>qp", ":cprev<CR>")  -- jump to prev quickfix list item
 keymap.set("n", "<leader>ql", ":clast<CR>")  -- jump to last quickfix list item
 keymap.set("n", "<leader>qc", ":cclose<CR>") -- close quickfix list
 
+
+-- Copilot
+vim.api.nvim_set_keymap('n', '<leader>ct', [[:lua ToggleCopilot()<CR>]], { noremap = true, silent = true })
+
+function ToggleCopilot()
+  local copilot_status = vim.fn['copilot#Enabled']()
+  if copilot_status == 1 then
+    vim.cmd("Copilot disable")
+    print("Copilot disabled")
+  else
+    vim.cmd("Copilot enable")
+    print("Copilot enabled")
+  end
+end
+
 -- Vim-maximizer
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle maximize tab
 

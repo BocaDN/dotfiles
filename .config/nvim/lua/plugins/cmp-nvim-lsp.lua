@@ -59,14 +59,16 @@ return {
         end,
       },
       completion = {
-        completeopt = 'menu,menuone,noinsert',
+        completeopt = 'menu,menuone,insert',
+        autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
+        keyword_length = 1, -- how many characters before suggestions start
       },
       mapping = cmp.mapping.preset.insert {
         ['<C-j>'] = cmp.mapping.select_next_item(), -- next suggestion
         ['<C-k>'] = cmp.mapping.select_prev_item(), -- previous suggestion
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),    -- scroll backward
         ['<C-f>'] = cmp.mapping.scroll_docs(4),     -- scroll forward
-        ['<C-Space>'] = cmp.mapping.complete {},    -- show completion suggestions
+        ['<C-Space>'] = cmp.mapping.abort(),    
         ['<CR>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
