@@ -2,9 +2,9 @@
 vim.g.mapleader = " "
 vim.g.user_emmet_leader_key = '<C-z>'
 
-
 local keymap = vim.keymap
 
+keymap.set("n", "<leader><leader>", ":noh<CR>") -- clear selection
 
 vim.keymap.set("n", "<leader>ts", ":Huez<CR>")
 

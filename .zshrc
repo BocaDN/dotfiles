@@ -1,12 +1,35 @@
+# Enable Powerlevel9k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+
+###### ------------ Powerlevel10k - Start ------------#####
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+###### ------------ Powerlevel10k - End ------------#####
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools/adb
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="$HOME/.local/bin:$PATH"
+export CHROME_EXECUTABLE="/usr/bin/chromium"
+export PATH="$HOME/miniconda3/bin:$PATH"
+export PATH="$HOME/flutter/bin:$PATH"
+export BROWSER='/usr/bin/chromium'
 export ZSH="$HOME/.oh-my-zsh"
 export CC=clang
 export CXX=clang++
 export CLANG_BASE="--build-base build_clang --install-base install_clang"
 export BUILD_ARGS="--symlink-install ${CLANG_BASE} --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+export EDITOR=nvim
 alias cb="colcon build ${BUILD_ARGS}"
 
 # bind ctrl-l to clear command
@@ -26,6 +49,8 @@ bindkey '^L' clear-screen-and-scrollback
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+export LAMBDA_MOD_N_DIR_LEVELS=3
+eval "$(dircolors -b ~/.dircolors)"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -124,7 +149,7 @@ source $ZSH/oh-my-zsh.sh
 #alias vim="nvim"
 alias nvc="nvim ./.config/nvim"
 alias ains="sudo apt install"
-alias v="nvim ."
+alias v="nvim"
 alias c="clear"
 alias o="cd ~/ObsidianVault/Nick;nvim ."
 #alias o="nvim ~/Obsidian\ Vault/Nick/Home.md"
@@ -135,6 +160,7 @@ alias asdf="xmodmap ~/.xmodmap"
 #alias ewc="nvim ~/.config/eww"
 alias pman="sudo pacman -S"
 alias lg="lazygit"
+alias k="kubectl"
 
 #export PATH="/usr/node-v20.9.0-linux-x64/bin/:$PATH"
 #export PATH="/usr/node-v20.9.0-linux-x64/lib/node_modules/npm/bin/:$PATH"
@@ -146,7 +172,20 @@ alias lg="lazygit"
 bindkey -v
 export KEYTIMEOUT=1
 
-bindkey '^r' history-incremental-search-backward
+fh() {
+  local cmd
+  # Reverse history, cut duplicates keeping latest first, then fzf
+  cmd=$(history | tac | sed 's/^[ ]*[0-9]\+[ ]*//' | awk '!seen[$0]++' | fzf --no-sort --exact --height=9 --reverse --border --prompt="History > ") && eval "$cmd"
+}
+
+fh-widget() {
+  fh
+  zle reset-prompt
+}
+
+zle -N fh-widget
+bindkey '^R' fh-widget
+# bindkey '^r' history-incremental-search-backward
 
 add-compile-commands() {
     dest_dir=$(find src -wholename "${1}" -type d -print -quit | awk -F/ '{printf "%s", $NF}')
@@ -205,19 +244,35 @@ export NVM_DIR="$HOME/.nvm"
 
 # # >>> conda initialize >>>
 # # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/nickArch/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/nickArch/miniforge3/etc/profile.d/conda.sh" ]; then
-#         . "/home/nickArch/miniforge3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/nickArch/miniforge3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
+__conda_setup="$('/home/nickArch/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/nickArch/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/home/nickArch/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/nickArch/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 
 
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+export MAMBA_EXE='/home/nickArch/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/nickArch/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    # alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
