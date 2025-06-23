@@ -264,6 +264,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# toggle night filter
+bindsym $mod+Shift+F3 exec ~/.local/bin/redshift.sh
 # reload custom dvorak keyboard layout
 bindsym $mod+Shift+F2 exec ~/.local/bin/rp-dvorak.sh
 bindsym $mod+Shift+mod1+F2 exec ~/.local/bin/setxkb-us.sh
