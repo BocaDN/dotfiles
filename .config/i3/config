@@ -75,7 +75,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec_always --no-startup-id picom &
 exec --no-startup-id "feh --bg-scale /home/nickArch/Pictures/walls/forest_bg.jpg"
 exec --no-startup-id nm-applet
-exec --no-startup-id "xmodmap ~/.Xmodmap"
+# exec --no-startup-id "xmodmap ~/.Xmodmap"
 exec --no-startup-id i3-msg "exec konsole -e tmux"
 # exec --no-startup-id i3-msg "exec obsidian"
 # exec --no-startup-id i3-msg "exec foliate"
@@ -124,6 +124,8 @@ bindsym $mod+Return exec "konsole"
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+Shift+w kill
+bindsym $mod+Control+w kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id dmenu_run
