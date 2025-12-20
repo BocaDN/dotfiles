@@ -26,6 +26,8 @@ require("lazy").setup("plugins", {
   },
 })
 
+require("core.options")
+require("core.functions")
 require("core.keymaps")
 require("core.autocmds")
 require("core.disabled")
