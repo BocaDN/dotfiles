@@ -17,10 +17,12 @@ return {
 
     -- ESLint language server setup
     lspconfig.eslint.setup({
-      -- Only attach to ts/tsx/js/jsx files
       filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
       on_attach = function(client, bufnr)
-        -- Auto-fix on save
+        --  Disable diagnostics (you still get EslintFixAll on save)
+        client.server_capabilities.publishDiagnosticsProvider = false
+
+        -- 🛠 Auto-fix on save still works
         vim.api.nvim_create_autocmd("BufWritePre", {
           buffer = bufnr,
           command = "EslintFixAll",

@@ -1,12 +1,12 @@
 local opt = vim.opt
 
-opt.termguicolors = true 
+opt.termguicolors = true
 
 vim.treesitter.language.register("html", "angular") -- Ensures HTML is injected in Angular templates
 -- Session Management
-opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-vim.g.python3_host_prog = "/home/nickArch/micromamba/envs/ml-gpu/bin/python"
+-- vim.g.python3_host_prog = "/home/nickArch/micromamba/envs/ml-gpu/bin/python"
 
 
 -- Disable Copilot
@@ -40,6 +40,7 @@ opt.smartcase = true
 opt.cursorline = true
 
 -- Appearance
+opt.colorcolumn = "80"
 opt.background = "dark"
 opt.signcolumn = "yes"
 opt.showmode = false
@@ -67,4 +68,3 @@ opt.mouse = ""
 opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
-

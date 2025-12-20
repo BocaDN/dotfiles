@@ -20,6 +20,7 @@ keymap.set("n", "<leader>wq", ":wq<CR>")       -- save and quit
 keymap.set("n", "<leader>qq", ":q!<CR>")       -- quit without saving
 keymap.set("n", "<leader>qa", ":qa!<CR>")      -- quit without saving
 keymap.set("n", "<leader>ww", ":w<CR>")        -- save
+keymap.set("n", "<leader>wa", ":wa!<CR>")      -- save all buffers
 keymap.set("n", "gx", ":!open <c-r><c-a><CR>") -- open URL under cursor
 
 -- Split window management
@@ -33,10 +34,10 @@ keymap.set("n", "<leader>sl", "<C-w>>5")    -- make split windows width bigger
 keymap.set("n", "<leader>sh", "<C-w><5")    -- make split windows width smaller
 
 -- Tab management
-keymap.set("n", "<leader>to", ":tabnew<CR>")    -- open a new tab
-keymap.set("n", "<leader>tx", ":tabclose<CR>")  -- close a tab
-keymap.set("n", "<leader>tn", ":tabn<CR>")      -- next tab
-keymap.set("n", "<leader>tp", ":tabp<CR>")      -- previous tab
+keymap.set("n", "<leader>to", ":tabnew<CR>")   -- open a new tab
+keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close a tab
+keymap.set("n", "<leader>tn", ":tabn<CR>")     -- next tab
+keymap.set("n", "<leader>tp", ":tabp<CR>")     -- previous tab
 
 -- Diff keymaps
 keymap.set("n", "<leader>cc", ":diffput<CR>")   -- put diff from current to other during diff
@@ -83,20 +84,22 @@ keymap.set("n", "<leader>er", ":NvimTreeFocus<CR>")    -- toggle focus to file e
 keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>") -- find file in file explorer
 
 -- Telescope
-keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})                                              -- fuzzy find files in project
-keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {})                                               -- grep file contents in project
-keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})                                                 -- fuzzy find open buffers
-keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {})                                               -- fuzzy find help tags
-keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {})                               -- fuzzy find in current file buffer
-keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})                                    -- fuzzy find LSP/class symbols
-keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {})                                      -- fuzzy find LSP/incoming calls
+keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})                                                    -- fuzzy find files in project
+keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {})                                                     -- grep file contents in project
+keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})                                                       -- fuzzy find open buffers
+keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {})                                                     -- fuzzy find help tags
+keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {})                                     -- fuzzy find in current file buffer
+keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})                                          -- fuzzy find LSP/class symbols
+keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {})                                            -- fuzzy find LSP/incoming calls
 -- keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({default_text=":method:"}) end) -- fuzzy find methods in current class
-keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({ symbols = { 'function', 'method' } }) end) -- fuzzy find methods in current class
-keymap.set('n', '<leader>ft', function()                                                                                -- grep file contents in current nvim-tree node
-  local success, node = pcall(function() return require('nvim-tree.lib').get_node_at_cursor() end)
-  if not success or not node then return end;
-  require('telescope.builtin').live_grep({ search_dirs = { node.absolute_path } })
-end)
+keymap.set('n', '<leader>fm',
+  function() require('telescope.builtin').treesitter({ symbols = { 'function', 'method' } }) end)                             -- fuzzy find methods in current class
+keymap.set('n', '<leader>ft',
+  function()                                                                                                                  -- grep file contents in current nvim-tree node
+    local success, node = pcall(function() return require('nvim-tree.lib').get_node_at_cursor() end)
+    if not success or not node then return end;
+    require('telescope.builtin').live_grep({ search_dirs = { node.absolute_path } })
+  end)
 
 -- Git-blame
 keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>") -- toggle git blame
@@ -123,6 +126,29 @@ keymap.set("n", "<C-N>", function() harpoon:list():next() end)
 -- Vim REST Console
 keymap.set("n", "<leader>xr", ":call VrcQuery()<CR>") -- Run REST query
 
+-- Refactoring Nvim
+keymap.set("x", "<leader>re", ":Refactor extract ")
+keymap.set("x", "<leader>rf", ":Refactor extract_to_file ")
+
+keymap.set("x", "<leader>rv", ":Refactor extract_var ")
+
+keymap.set({ "n", "x" }, "<leader>ri", ":Refactor inline_var")
+
+keymap.set( "n", "<leader>rI", ":Refactor inline_func")
+
+keymap.set("n", "<leader>rb", ":Refactor extract_block")
+keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file")
+--
+-- load refactoring Telescope extension
+require("telescope").load_extension("refactoring")
+
+keymap.set(
+	{"n", "x"},
+	"<leader>rr",
+	function() require('telescope').extensions.refactoring.refactors() end
+)
+
+-- Note that not all refactor support both normal and visual mode
 -- LSP
 keymap.set('n', '<leader>gg', '<cmd>lua vim.lsp.buf.hover()<CR>')
 keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
@@ -131,7 +157,7 @@ keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
 keymap.set('n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
 keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>')
 keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-keymap.set('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>')
+keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 keymap.set('n', '<leader>gf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
 keymap.set('v', '<leader>gf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
 keymap.set('n', '<leader>ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
@@ -165,6 +191,11 @@ keymap.set("n", '<leader>tm', function()
     require('jdtls').test_nearest_method();
   end
 end)
+
+-- Cellular automaton (https://github.com/Eandrju/cellular-automaton.nvim)
+keymap.set("n", '<leader>mr', "<cmd>CellularAutomaton make_it_rain<cr>")
+keymap.set("n", '<leader>ms', "<cmd>CellularAutomaton scramble<cr>")
+keymap.set("n", '<leader>mg', "<cmd>CellularAutomaton game_of_life<cr>")
 
 -- Database
 keymap.set("n", '<leader>db', "<cmd>DBUIToggle<cr>")

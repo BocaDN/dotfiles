@@ -7,6 +7,7 @@ return {
       sources = {
         null_ls.builtins.formatting.prettier.with({
           filetypes = { "typescript", "typescriptreact", "html" },
+          extra_args = { "--bracket-spacing=false" }
           -- filetypes = { "html" }
         }),
       },

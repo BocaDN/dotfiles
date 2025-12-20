@@ -49,7 +49,7 @@ return {
       },
 
       -- Add mapping for ObsidianSearch
-      ["<leader>s"] = {
+      ["<leader>ss"] = {
         action = function()
           vim.cmd(":ObsidianSearch")
         end,
@@ -57,7 +57,7 @@ return {
       },
 
       -- Add mapping for ObsidianOpen
-      ["<leader>o"] = {
+      ["<leader>op"] = {
         action = function()
           vim.cmd(":ObsidianOpen")
         end,
@@ -65,9 +65,17 @@ return {
       },
 
       -- Add mapping for ObsidianBacklinks
-      ["<leader>b"] = {
+      ["<leader>bl"] = {
         action = function()
           vim.cmd(":ObsidianBacklinks")
+        end,
+        opts = { noremap = true, silent = true },
+      },
+      --
+      -- Add mapping for ObsidianFollowLink
+      ["<leader>gd"] = {
+        action = function()
+          vim.cmd(":ObsidianFollowLink")
         end,
         opts = { noremap = true, silent = true },
       },
@@ -105,7 +113,7 @@ return {
       },
 
       -- Add mapping for ObsidianQuickSwitch
-      ["<leader>qs"] = {
+      ["<leader>sw"] = {
         action = function()
           vim.cmd(":ObsidianQuickSwitch")
         end,
