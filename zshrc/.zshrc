@@ -103,11 +103,15 @@ export LAMBDA_MOD_N_DIR_LEVELS=3
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( 
-    # other plugins...
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
+
+
+# !!!! Plugins installed by Homebrew !!!!!
+#
+# plugins=( 
+#     # other plugins...
+#     zsh-autosuggestions
+#     zsh-syntax-highlighting
+# )
 
 source $ZSH/oh-my-zsh.sh
 
