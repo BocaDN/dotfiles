@@ -50,7 +50,7 @@ bindkey '^L' clear-screen-and-scrollback
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 export LAMBDA_MOD_N_DIR_LEVELS=3
-eval "$(dircolors -b ~/.dircolors)"
+# eval "$(dircolors -b ~/.dircolors)"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -148,7 +148,8 @@ source $ZSH/oh-my-zsh.sh
 
 #alias vim="nvim"
 alias nvc="nvim ./.config/nvim"
-alias ains="sudo apt install"
+# alias ains="sudo apt install"
+alias vd="nvim ."
 alias v="nvim"
 alias c="clear"
 alias o="cd ~/ObsidianVault/Nick;nvim ."
@@ -161,6 +162,9 @@ alias asdf="xmodmap ~/.xmodmap"
 alias pman="sudo pacman -S"
 alias lg="lazygit"
 alias k="kubectl"
+alias kns="k9s"
+alias tmux-sessionizer="sh /home/nickArch/.local/bin/tmux-sessionizer.sh"
+alias ts="sh /home/nickArch/.local/bin/tmux-sessionizer.sh"
 
 #export PATH="/usr/node-v20.9.0-linux-x64/bin/:$PATH"
 #export PATH="/usr/node-v20.9.0-linux-x64/lib/node_modules/npm/bin/:$PATH"
@@ -172,20 +176,19 @@ alias k="kubectl"
 bindkey -v
 export KEYTIMEOUT=1
 
-fh() {
-  local cmd
-  # Reverse history, cut duplicates keeping latest first, then fzf
-  cmd=$(history | tac | sed 's/^[ ]*[0-9]\+[ ]*//' | awk '!seen[$0]++' | fzf --no-sort --exact --height=9 --reverse --border --prompt="History > ") && eval "$cmd"
-}
-
 fh-widget() {
-  fh
+  local cmd
+  cmd=$(fc -l 1 | sed 's/^[ ]*[0-9]\+[ ]*\**[ ]*//' | awk '!seen[$0]++' | \
+        fzf --tac --exact --no-sort --height=9 --reverse --border --prompt="History > ")
+  if [[ -n "$cmd" ]]; then
+    LBUFFER="$cmd"
+  fi
   zle reset-prompt
 }
-
 zle -N fh-widget
-bindkey '^R' fh-widget
-# bindkey '^r' history-incremental-search-backward
+# bindkey '^R' fh-widget
+bindkey '^r' history-incremental-search-backward
+
 
 add-compile-commands() {
     dest_dir=$(find src -wholename "${1}" -type d -print -quit | awk -F/ '{printf "%s", $NF}')
