@@ -20,6 +20,9 @@ export CLANG_BASE="--build-base build_clang --install-base install_clang"
 export BUILD_ARGS="--symlink-install ${CLANG_BASE} --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 export EDITOR=nvim
 
+# load homebrew environment variables
+[ -d /home/linuxbrew/.linuxbrew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
 # bind ctrl-l to clear command
 function clear-screen-and-scrollback() {
   builtin echoti civis >"$TTY"
