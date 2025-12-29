@@ -1,4 +1,4 @@
-include $HOME/.config/i2/workspaces.conf
+include $HOME/.config/i3/workspaces.conf
 
 gaps inner 0
 #for_window [class=".*"] border pixel 0
