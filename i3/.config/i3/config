@@ -137,8 +137,8 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -theme gruvbox-dark-hard
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # Toggle mouse hold
-bindsym $mod+i exec --no-startup-id ~/.local/bin/toggle-mouse.sh
-bindsym $mod+u exec --no-startup-id "xdotool click 1"
+# bindsym $mod+i exec --no-startup-id ~/.local/bin/toggle-mouse.sh
+# bindsym $mod+u exec --no-startup-id "xdotool click 1"
 
 # change focus
 bindsym $mod+h focus left
