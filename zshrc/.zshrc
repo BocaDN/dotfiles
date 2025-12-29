@@ -12,25 +12,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools/adb
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="$HOME/.local/bin:$PATH"
-export CHROME_EXECUTABLE="/usr/bin/chromium"
-export PATH="$HOME/miniconda3/bin:$PATH"
-export PATH="$HOME/flutter/bin:$PATH"
-export BROWSER='/usr/bin/chromium'
 export ZSH="$HOME/.oh-my-zsh"
 export CC=clang
 export CXX=clang++
 export CLANG_BASE="--build-base build_clang --install-base install_clang"
 export BUILD_ARGS="--symlink-install ${CLANG_BASE} --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
 export EDITOR=nvim
-alias cb="colcon build ${BUILD_ARGS}"
 
 # bind ctrl-l to clear command
 function clear-screen-and-scrollback() {
@@ -149,7 +137,6 @@ source $ZSH/oh-my-zsh.sh
 #alias vim="nvim"
 alias nvc="nvim ./.config/nvim"
 # alias ains="sudo apt install"
-alias vd="nvim ."
 alias v="nvim"
 alias c="clear"
 alias o="cd ~/ObsidianVault/Nick;nvim ."
@@ -200,82 +187,6 @@ add-compile-commands() {
 }
 alias add_compile_commands="add-compile-commands"
 
-# include following in .bashrc / .bash_profile / .zshrc
-# usage
-# $ mkvenv myvirtualenv # creates venv under ~/.virtualenvs/
-# $ venv myvirtualenv   # activates venv
-# $ deactivate          # deactivates venv
-# $ rmvenv myvirtualenv # removes venv
-
-export VENV_HOME="$HOME/.virtualenvs"
-[[ -d $VENV_HOME ]] || mkdir $VENV_HOME
-
-lsvenv() {
-  ls -1 $VENV_HOME
-}
-
-venv() {
-  if [ $# -eq 0 ]
-    then
-      echo "Please provide venv name"
-    else
-      source "$VENV_HOME/$1/bin/activate"
-  fi
-}
-
-mkvenv() {
-  if [ $# -eq 0 ]
-    then
-      echo "Please provide venv name"
-    else
-      python3 -m venv $VENV_HOME/$1
-  fi
-}
-
-rmvenv() {
-  if [ $# -eq 0 ]
-    then
-      echo "Please provide venv name"
-    else
-      rm -r $VENV_HOME/$1
-  fi
-}
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/nickArch/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/nickArch/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/nickArch/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/nickArch/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'micromamba shell init' !!
-export MAMBA_EXE='/home/nickArch/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/nickArch/micromamba';
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    # alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
