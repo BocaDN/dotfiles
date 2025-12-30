@@ -113,7 +113,11 @@ export LAMBDA_MOD_N_DIR_LEVELS=3
 #     zsh-syntax-highlighting
 # )
 
+
+
 source $ZSH/oh-my-zsh.sh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
