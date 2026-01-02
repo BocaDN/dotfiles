@@ -307,10 +307,14 @@ bindsym $mod+r mode "resize"
 #bluetoot2 (removed)
 bar {
     position top
-    tray_output none
-    status_command ~/.i3/bumblebee-status/bumblebee-status \
-		-m aur-update arch_update brightness pasink pasource battery datetime \
-		-p root.path=/ time.format="%H:%M CW %V" date.format="%a, %d %m %Y" \
-		-t iceberg
+    status_command i3status
+    font DejaVuSansMono 13
+
+    # position top
+    # tray_output none
+    # status_command ~/.i3/bumblebee-status/bumblebee-status \
+		# -m aur-update arch_update brightness pasink pasource battery datetime \
+		# -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %d %m %Y" \
+		# -t iceberg
 }
 
