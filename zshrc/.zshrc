@@ -149,6 +149,7 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 alias nvc="nvim ./.config/nvim"
 # alias ains="sudo apt install"
 alias v="nvim"
+alias vd="nvim ."
 alias c="clear"
 alias o="cd ~/ObsidianVault/Nick;nvim ."
 #alias o="nvim ~/Obsidian\ Vault/Nick/Home.md"
