@@ -8,8 +8,10 @@
 # fi
 ###### ------------ Powerlevel10k - End ------------#####
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# tmux autostart
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
 
 # Path to your oh-my-zsh installation.
 export PATH="$HOME/.local/bin:$PATH"
